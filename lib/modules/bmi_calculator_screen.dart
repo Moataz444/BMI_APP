@@ -1,4 +1,3 @@
-import 'dart:math';
 import 'package:bmi_app/shared/components/components.dart';
 import 'package:bmi_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
@@ -347,7 +346,10 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                   child: MaterialButton(
                     onPressed: () {
                       setState(() {
-                        result = weight / pow(height / 100, 2);
+                        result = bmiFunc(
+                          height: height,
+                          weight: weight,
+                        );
                         // print(result.round());
                       });
                       Navigato(context, const BmiResult());
