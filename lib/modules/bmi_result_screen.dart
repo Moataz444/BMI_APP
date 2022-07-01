@@ -1,5 +1,6 @@
+import 'package:bmi_app/modules/bmi_calculator_screen.dart';
+import 'package:bmi_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
-import 'bmi_calculator_screen.dart';
 
 class BmiResult extends StatelessWidget {
   const BmiResult({Key? key}) : super(key: key);
