@@ -21,8 +21,8 @@ class BmiResult extends StatelessWidget {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          height: 600,
+        child: SizedBox(
+          height: 620,
           child: Column(
             children: [
               Expanded(
