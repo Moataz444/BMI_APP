@@ -1,5 +1,6 @@
 import 'dart:math';
 import 'package:bmi_app/shared/components/components.dart';
+import 'package:bmi_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
 import 'bmi_result_screen.dart';
 
@@ -15,7 +16,6 @@ bool isMale = true;
 double height = 120;
 int weight = 60;
 int age = 20;
-Color clr = Colors.lightBlueAccent;
 
 class _BmiCalculatorState extends State<BmiCalculator> {
   @override
@@ -29,8 +29,8 @@ class _BmiCalculatorState extends State<BmiCalculator> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Container(
-          height: 600,
+        child: SizedBox(
+          height: 620,
           child: Column(
             children: [
               Expanded(
@@ -45,7 +45,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                             onTap: () {
                               setState(() {
                                 isMale = true;
-                                clr = Colors.blue;
+                                clr = blue;
                               });
                             },
                             child: Container(
@@ -83,7 +83,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                             onTap: () {
                               setState(() {
                                 isMale = false;
-                                clr = Colors.pink;
+                                clr = pink;
                               });
                             },
                             child: Container(
