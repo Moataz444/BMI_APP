@@ -1,6 +1,9 @@
 import 'package:bmi_app/modules/bmi_calculator_screen.dart';
 import 'package:bmi_app/shared/styles/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_gauges/gauges.dart';
+
+import '../shared/components/components.dart';
 
 class BmiResult extends StatelessWidget {
   const BmiResult({Key? key}) : super(key: key);
@@ -22,10 +25,11 @@ class BmiResult extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 620,
+          height: 603,
           child: Column(
             children: [
               Expanded(
+                flex: 5,
                 child: SizedBox(
                   width: double.infinity,
                   child: Padding(
@@ -85,6 +89,7 @@ class BmiResult extends StatelessWidget {
                 ),
               ),
               Expanded(
+                flex: 4,
                 child: Padding(
                   padding: const EdgeInsets.only(
                     bottom: 20,
@@ -127,6 +132,7 @@ class BmiResult extends StatelessWidget {
                 ),
               ),
               Expanded(
+                flex: 4,
                 child: Padding(
                   padding: const EdgeInsets.only(
                     bottom: 20,
@@ -225,26 +231,217 @@ class BmiResult extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(
-                  bottom: 20,
-                  left: 20,
-                  right: 20,
+              // Padding(
+              //   padding: const EdgeInsets.only(
+              //     bottom: 20,
+              //     left: 20,
+              //     right: 20,
+              //   ),
+              //   child: Container(
+              //     width: double.infinity,
+              //     height: 60,
+              //     decoration: BoxDecoration(
+              //         color: clr,
+              //         borderRadius: BorderRadiusDirectional.circular(20)),
+              //     child: Center(
+              //       child: Text(
+              //         'Result: ${double.parse(result.toStringAsFixed(2))}',
+              //         style: const TextStyle(
+              //             fontSize: 24, fontWeight: FontWeight.bold),
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              SfLinearGauge(
+                minimum: 10.0,
+                maximum: 43.0,
+                // interval: 16,
+                // labelPosition: LinearLabelPosition.inside,
+                // labelOffset: 0.1,
+                showLabels: false,
+                orientation: LinearGaugeOrientation.horizontal,
+                majorTickStyle: const LinearTickStyle(length: 0),
+                minorTickStyle: const LinearTickStyle(length: 0),
+                axisLabelStyle:
+                    const TextStyle(fontSize: 18.0, color: Colors.black),
+                axisTrackStyle: const LinearAxisTrackStyle(
+                  // color: Colors.cyan,
+                  // edgeStyle: LinearEdgeStyle.bothFlat,
+                  thickness: 0,
+                  // borderColor: Colors.grey
                 ),
-                child: Container(
-                  width: double.infinity,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      color: clr,
-                      borderRadius: BorderRadiusDirectional.circular(20)),
-                  child: Center(
-                    child: Text(
-                      'Result: ${double.parse(result.toStringAsFixed(2))}',
-                      style: const TextStyle(
-                          fontSize: 24, fontWeight: FontWeight.bold),
+                markerPointers: [
+                  LinearShapePointer(
+                    value: checkResult(result),
+                    color: Colors.black.withOpacity(0.83),
+                    shapeType: LinearShapePointerType.diamond,
+                    height: 30,
+                  ),
+                  LinearWidgetPointer(
+                    value: checkResult(result),
+                    offset: 25,
+                    position: LinearElementPosition.inside,
+                    child: Wrap(
+                      children: [
+                        Text(
+                          '${result.round()} kg/m',
+                          style: const TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const Text(
+                          '2',
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                ),
+                  const LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 14.25,
+                    offset: 30,
+                    position: LinearElementPosition.outside,
+                    child: Text('UnderWeight'),
+                  ),
+                  const LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 21.75,
+                    offset: 30,
+                    position: LinearElementPosition.outside,
+                    child: Text('Normal'),
+                  ),
+                  const LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 30,
+                    offset: 30,
+                    position: LinearElementPosition.outside,
+                    child: Text('OverWeight'),
+                  ),
+                  const LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 39,
+                    offset: 30,
+                    position: LinearElementPosition.outside,
+                    child: Text('Obesity'),
+                  ),
+                  LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 16,
+                    // offset: 30,
+                    position: LinearElementPosition.inside,
+                    child: textPointer(txt: '16'),
+                  ),
+                  LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 18.5,
+                    // offset: 30,
+                    position: LinearElementPosition.inside,
+                    child: textPointer(txt: '18.5'),
+                  ),
+                  LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 25,
+                    // offset: 30,
+                    position: LinearElementPosition.inside,
+                    child: textPointer(txt: '25'),
+                  ),
+                  LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 30,
+                    // offset: 30,
+                    position: LinearElementPosition.inside,
+                    child: textPointer(txt: '30'),
+                  ),
+                  LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 35,
+                    // offset: 30,
+                    position: LinearElementPosition.inside,
+                    child: textPointer(txt: '35'),
+                  ),
+                  LinearWidgetPointer(
+                    enableAnimation: false,
+                    value: 40,
+                    // offset: 30,
+                    position: LinearElementPosition.inside,
+                    child: textPointer(txt: '40'),
+                  ),
+                ],
+                ranges: <LinearGaugeRange>[
+                  LinearGaugeRange(
+                      edgeStyle: LinearEdgeStyle.startCurve,
+                      startValue: 10,
+                      endValue: 16,
+                      color: Colors.red,
+                      startWidth: 30,
+                      endWidth: 30,
+                      child: Container(
+                        // clipBehavior: Clip.antiAliasWithSaveLayer,
+                        decoration: const BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadiusDirectional.only(
+                            topStart: Radius.circular(10),
+                            bottomStart: Radius.circular(10),
+                          ),
+                        ),
+                      )),
+                  LinearGaugeRange(
+                      startValue: 16,
+                      endValue: 17,
+                      color: Colors.redAccent.withOpacity(0.7),
+                      startWidth: 30,
+                      endWidth: 30),
+                  const LinearGaugeRange(
+                      startValue: 17,
+                      endValue: 18.5,
+                      color: Colors.yellow,
+                      startWidth: 30,
+                      endWidth: 30),
+                  const LinearGaugeRange(
+                      startValue: 18.5,
+                      endValue: 25,
+                      color: Colors.green,
+                      startWidth: 30,
+                      endWidth: 30),
+                  const LinearGaugeRange(
+                      startValue: 25,
+                      endValue: 30,
+                      color: Colors.yellow,
+                      startWidth: 30,
+                      endWidth: 30),
+                  LinearGaugeRange(
+                      startValue: 30,
+                      endValue: 35,
+                      color: Colors.redAccent.withOpacity(0.7),
+                      startWidth: 30,
+                      endWidth: 30),
+                  const LinearGaugeRange(
+                      startValue: 35,
+                      endValue: 40,
+                      color: Colors.red,
+                      startWidth: 30,
+                      endWidth: 30),
+                  LinearGaugeRange(
+                      edgeStyle: LinearEdgeStyle.endCurve,
+                      startValue: 40,
+                      endValue: 43,
+                      startWidth: 30,
+                      endWidth: 30,
+                      child: Container(
+                        // clipBehavior: Clip.antiAliasWithSaveLayer,
+                        decoration: BoxDecoration(
+                          color: Colors.red.shade900,
+                          borderRadius: const BorderRadiusDirectional.only(
+                            topEnd: Radius.circular(10),
+                            bottomEnd: Radius.circular(10),
+                          ),
+                        ),
+                      )),
+                ],
               ),
             ],
           ),
