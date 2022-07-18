@@ -29,10 +29,11 @@ class _BmiCalculatorState extends State<BmiCalculator> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 620,
+          height: 610,
           child: Column(
             children: [
               Expanded(
+                flex: 5,
                 child: SizedBox(
                   width: double.infinity,
                   child: Padding(
@@ -118,6 +119,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 ),
               ),
               Expanded(
+                flex: 4,
                 child: Padding(
                   padding: const EdgeInsets.only(
                     bottom: 20,
@@ -158,8 +160,8 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                           inactiveColor: Colors.grey,
                           activeColor: clr,
                           value: height,
-                          max: 240,
-                          min: 40,
+                          max: 250,
+                          min: 20,
                           onChanged: (value) {
                             setState(() {
                               height = value;
@@ -173,6 +175,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 ),
               ),
               Expanded(
+                flex: 4,
                 child: Padding(
                   padding: const EdgeInsets.only(
                     bottom: 20,
@@ -226,7 +229,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                                       FloatingActionButton(
                                         onPressed: () {
                                           setState(() {
-                                            weight--;
+                                            weight <= 0 ? weight : weight--;
                                           });
                                         },
                                         backgroundColor: clr,
@@ -299,7 +302,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                                       FloatingActionButton(
                                         onPressed: () {
                                           setState(() {
-                                            age--;
+                                            age <= 0 ? age : age--;
                                           });
                                         },
                                         backgroundColor: clr,
@@ -339,7 +342,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                 ),
                 child: Container(
                   width: double.infinity,
-                  height: 60,
+                  height: 50,
                   decoration: BoxDecoration(
                       color: clr,
                       borderRadius: BorderRadiusDirectional.circular(20)),
