@@ -1,6 +1,10 @@
+import 'dart:async';
 import 'dart:math';
 
+import 'package:bmi_app/modules/bmi_calculator_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../styles/colors.dart';
 
 Future Navigato(context, widget) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
@@ -8,6 +12,13 @@ Future Navigato(context, widget) =>
 double bmiFunc({required int weight, required double height}) {
   double result = weight / pow(height / 100, 2);
   return result;
+}
+
+Widget gaugeText({required String txt}) {
+  return Text(
+    txt,
+    style: const TextStyle(fontSize: 13),
+  );
 }
 
 Widget textPointer({required String txt}) => SizedBox(
@@ -32,4 +43,27 @@ double checkResult(double result) {
   } else {
     return result;
   }
+}
+
+Widget addRemoveButton({required Function() function, required bool addIcon}) {
+  return GestureDetector(
+    onLongPress: () {
+      addRemovee.addRemovefunction(function: function);
+      // addRemovefunction(function: function);
+    },
+    onLongPressEnd: (LongPressEndDetails longPressEndDetails) {
+      if (timer != null) {
+        timer!.cancel();
+      }
+      onlongprss = false;
+    },
+    child: FloatingActionButton(
+      onPressed: () {
+        function;
+      },
+      backgroundColor: clr,
+      mini: true,
+      child: addIcon ? const Icon(Icons.add) : const Icon(Icons.remove),
+    ),
+  );
 }

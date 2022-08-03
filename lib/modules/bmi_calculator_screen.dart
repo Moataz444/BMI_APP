@@ -1,5 +1,8 @@
+import 'dart:async';
+
 import 'package:bmi_app/shared/components/components.dart';
 import 'package:bmi_app/shared/styles/colors.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'bmi_result_screen.dart';
 
@@ -15,8 +18,22 @@ bool isMale = true;
 double height = 120;
 int weight = 60;
 int age = 20;
+bool onlongprss = false;
+Timer? timer;
+var addRemovee = _BmiCalculatorState();
 
 class _BmiCalculatorState extends State<BmiCalculator> {
+  void addRemovefunction({required Function function}) {
+    onlongprss = true;
+    Future.delayed(const Duration(milliseconds: 300), () {
+      if (onlongprss) {
+        timer = Timer.periodic(const Duration(milliseconds: 150), (timer) {
+          function;
+        });
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +46,8 @@ class _BmiCalculatorState extends State<BmiCalculator> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 610,
+          height: MediaQuery.of(context).size.height -
+              (MediaQuery.of(context).padding.top + kToolbarHeight),
           child: Column(
             children: [
               Expanded(
@@ -226,28 +244,82 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      FloatingActionButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            weight <= 0 ? weight : weight--;
+                                      GestureDetector(
+                                        onLongPress: () {
+                                          onlongprss = true;
+                                          Future.delayed(
+                                              const Duration(milliseconds: 300),
+                                              () {
+                                            if (onlongprss) {
+                                              timer = Timer.periodic(
+                                                  const Duration(
+                                                      milliseconds: 150),
+                                                  (timer) {
+                                                setState(() {
+                                                  weight <= 0
+                                                      ? weight
+                                                      : weight--;
+                                                });
+                                              });
+                                            }
                                           });
                                         },
-                                        backgroundColor: clr,
-                                        mini: true,
-                                        child: const Icon(Icons.remove),
+                                        onLongPressEnd: (LongPressEndDetails
+                                            longPressEndDetails) {
+                                          if (timer != null) {
+                                            timer!.cancel();
+                                          }
+                                          onlongprss = false;
+                                        },
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              weight <= 0 ? weight : weight--;
+                                            });
+                                          },
+                                          backgroundColor: clr,
+                                          mini: true,
+                                          child: const Icon(Icons.remove),
+                                        ),
                                       ),
                                       const SizedBox(
                                         width: 15,
                                       ),
-                                      FloatingActionButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            weight++;
+                                      GestureDetector(
+                                        onLongPress: () {
+                                          onlongprss = true;
+                                          Future.delayed(
+                                              const Duration(milliseconds: 300),
+                                              () {
+                                            if (onlongprss) {
+                                              timer = Timer.periodic(
+                                                  const Duration(
+                                                      milliseconds: 150),
+                                                  (timer) {
+                                                setState(() {
+                                                  weight++;
+                                                });
+                                              });
+                                            }
                                           });
                                         },
-                                        backgroundColor: clr,
-                                        mini: true,
-                                        child: const Icon(Icons.add),
+                                        onLongPressEnd: (LongPressEndDetails
+                                            longPressEndDetails) {
+                                          if (timer != null) {
+                                            timer!.cancel();
+                                          }
+                                          onlongprss = false;
+                                        },
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              weight++;
+                                            });
+                                          },
+                                          backgroundColor: clr,
+                                          mini: true,
+                                          child: const Icon(Icons.add),
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -299,28 +371,80 @@ class _BmiCalculatorState extends State<BmiCalculator> {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
-                                      FloatingActionButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            age <= 0 ? age : age--;
+                                      GestureDetector(
+                                        onLongPress: () {
+                                          onlongprss = true;
+                                          Future.delayed(
+                                              const Duration(milliseconds: 300),
+                                              () {
+                                            if (onlongprss) {
+                                              timer = Timer.periodic(
+                                                  const Duration(
+                                                      milliseconds: 150),
+                                                  (timer) {
+                                                setState(() {
+                                                  age <= 0 ? age : age--;
+                                                });
+                                              });
+                                            }
                                           });
                                         },
-                                        backgroundColor: clr,
-                                        mini: true,
-                                        child: const Icon(Icons.remove),
+                                        onLongPressEnd: (LongPressEndDetails
+                                            longPressEndDetails) {
+                                          if (timer != null) {
+                                            timer!.cancel();
+                                          }
+                                          onlongprss = false;
+                                        },
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              age <= 0 ? age : age--;
+                                            });
+                                          },
+                                          backgroundColor: clr,
+                                          mini: true,
+                                          child: const Icon(Icons.remove),
+                                        ),
                                       ),
                                       const SizedBox(
                                         width: 15,
                                       ),
-                                      FloatingActionButton(
-                                        onPressed: () {
-                                          setState(() {
-                                            age++;
+                                      GestureDetector(
+                                        onLongPress: () {
+                                          onlongprss = true;
+                                          Future.delayed(
+                                              const Duration(milliseconds: 300),
+                                              () {
+                                            if (onlongprss) {
+                                              timer = Timer.periodic(
+                                                  const Duration(
+                                                      milliseconds: 150),
+                                                  (timer) {
+                                                setState(() {
+                                                  age++;
+                                                });
+                                              });
+                                            }
                                           });
                                         },
-                                        backgroundColor: clr,
-                                        mini: true,
-                                        child: const Icon(Icons.add),
+                                        onLongPressEnd: (LongPressEndDetails
+                                            longPressEndDetails) {
+                                          if (timer != null) {
+                                            timer!.cancel();
+                                          }
+                                          onlongprss = false;
+                                        },
+                                        child: FloatingActionButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              age++;
+                                            });
+                                          },
+                                          backgroundColor: clr,
+                                          mini: true,
+                                          child: const Icon(Icons.add),
+                                        ),
                                       ),
                                     ],
                                   ),

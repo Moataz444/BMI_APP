@@ -25,7 +25,9 @@ class BmiResult extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: 603,
+          height: MediaQuery.of(context).size.height -
+              (MediaQuery.of(context).padding.top + kToolbarHeight),
+          // 603,
           child: Column(
             children: [
               Expanded(
@@ -300,33 +302,33 @@ class BmiResult extends StatelessWidget {
                       ],
                     ),
                   ),
-                  const LinearWidgetPointer(
+                  LinearWidgetPointer(
                     enableAnimation: false,
                     value: 14.25,
                     offset: 30,
                     position: LinearElementPosition.outside,
-                    child: Text('UnderWeight'),
+                    child: gaugeText(txt: 'UnderWeight'),
                   ),
-                  const LinearWidgetPointer(
+                  LinearWidgetPointer(
                     enableAnimation: false,
                     value: 21.75,
                     offset: 30,
                     position: LinearElementPosition.outside,
-                    child: Text('Normal'),
+                    child: gaugeText(txt: 'Normal'),
                   ),
-                  const LinearWidgetPointer(
+                  LinearWidgetPointer(
                     enableAnimation: false,
                     value: 30,
                     offset: 30,
                     position: LinearElementPosition.outside,
-                    child: Text('OverWeight'),
+                    child: gaugeText(txt: 'OverWeight'),
                   ),
-                  const LinearWidgetPointer(
+                  LinearWidgetPointer(
                     enableAnimation: false,
                     value: 39,
                     offset: 30,
                     position: LinearElementPosition.outside,
-                    child: Text('Obesity'),
+                    child: gaugeText(txt: 'Obesity'),
                   ),
                   LinearWidgetPointer(
                     enableAnimation: false,
