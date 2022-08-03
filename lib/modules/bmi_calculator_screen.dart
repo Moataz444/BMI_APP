@@ -23,19 +23,10 @@ Timer? timer;
 var addRemovee = _BmiCalculatorState();
 
 class _BmiCalculatorState extends State<BmiCalculator> {
-  void addRemovefunction({required Function function}) {
-    onlongprss = true;
-    Future.delayed(const Duration(milliseconds: 300), () {
-      if (onlongprss) {
-        timer = Timer.periodic(const Duration(milliseconds: 150), (timer) {
-          function;
-        });
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: clr,
@@ -46,8 +37,7 @@ class _BmiCalculatorState extends State<BmiCalculator> {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height -
-              (MediaQuery.of(context).padding.top + kToolbarHeight),
+          height: 605 > screenHeight ? 605 : screenHeight,
           child: Column(
             children: [
               Expanded(

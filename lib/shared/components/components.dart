@@ -1,10 +1,6 @@
 import 'dart:async';
 import 'dart:math';
-
-import 'package:bmi_app/modules/bmi_calculator_screen.dart';
 import 'package:flutter/material.dart';
-
-import '../styles/colors.dart';
 
 Future Navigato(context, widget) =>
     Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
@@ -43,27 +39,4 @@ double checkResult(double result) {
   } else {
     return result;
   }
-}
-
-Widget addRemoveButton({required Function() function, required bool addIcon}) {
-  return GestureDetector(
-    onLongPress: () {
-      addRemovee.addRemovefunction(function: function);
-      // addRemovefunction(function: function);
-    },
-    onLongPressEnd: (LongPressEndDetails longPressEndDetails) {
-      if (timer != null) {
-        timer!.cancel();
-      }
-      onlongprss = false;
-    },
-    child: FloatingActionButton(
-      onPressed: () {
-        function;
-      },
-      backgroundColor: clr,
-      mini: true,
-      child: addIcon ? const Icon(Icons.add) : const Icon(Icons.remove),
-    ),
-  );
 }

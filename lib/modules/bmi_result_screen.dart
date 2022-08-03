@@ -10,6 +10,8 @@ class BmiResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height -
+        (MediaQuery.of(context).padding.top + kToolbarHeight);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: clr,
@@ -25,8 +27,7 @@ class BmiResult extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: SizedBox(
-          height: MediaQuery.of(context).size.height -
-              (MediaQuery.of(context).padding.top + kToolbarHeight),
+          height: 605 > screenHeight ? 605 : screenHeight,
           // 603,
           child: Column(
             children: [
