@@ -1,7 +1,8 @@
 # bmi_app
 
-A new Flutter project.
+A Flutter project that calculates the BMI of a person.
 
-## Getting Started
+showing an indicator for BMI zones using
+syncfusion-flutter-gauges.
 
-This project is a starting point for a Flutter application.
+The theme changes according to gender
